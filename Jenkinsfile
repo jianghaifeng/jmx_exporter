@@ -18,6 +18,14 @@ def func(){
     }
 }
 
+def aptTest(){
+    return {
+        stage('aptTest'){
+            echo 'aptTest'
+        }
+    }
+}
+
 pipeline {
     agent none
     stages{        
@@ -26,6 +34,7 @@ pipeline {
             steps{
                 script{
                     func().call()
+                    aptTest.call()
                 }
             }
         }
