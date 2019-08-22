@@ -35,7 +35,7 @@ pipeline {
                 script{
                     func().call()
                     aptTest().call()
-                    stage{
+                    stage('post hook'){
                         echo 'custom'
                     }
                 }
