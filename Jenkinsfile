@@ -34,9 +34,7 @@ pipeline {
             steps{
                 script{
                     func().call()
-                    stage('post hook'){
-                        echo 'custom'
-                    }
+                    echo 'custom'
                 }
             }
         }
