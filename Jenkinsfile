@@ -1,5 +1,8 @@
 def func(){
     return {
+        stage('clone'){        
+            checkout([$class: 'GitSCM', branches: [[name: 'cae9f262557f4460a3de920fa9542f8ed75f5cbe' ]]])
+        }
         stage('func1'){
             echo 'from function1'
         }
@@ -17,15 +20,9 @@ def func(){
 
 pipeline {
     agent none
-    stages{
-        stage('Clone'){
-            agent any
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: 'cae9f262557f4460a3de920fa9542f8ed75f5cbe' ]]])
-            }
-        }
-        
+    stages{        
         stage('Deploy'){
+            agent any
             steps{
                 script{
                     func().call()
