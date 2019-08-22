@@ -24,5 +24,13 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'cae9f262557f4460a3de920fa9542f8ed75f5cbe' ]]])
             }
         }
+        
+        stage('Deploy'){
+            steps{
+                script{
+                    func().call()
+                }
+            }
+        }
     }
 }
