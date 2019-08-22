@@ -35,6 +35,9 @@ pipeline {
                 script{
                     func().call()
                     aptTest().call()
+                    stage{
+                        echo 'custom'
+                    }
                 }
             }
         }
