@@ -34,6 +34,16 @@ pipeline {
             steps{
                 script{
                     func().call()
+                    stage('post hook'){
+                        echo 'custom'
+                    }
+                }
+            }
+        }
+        stage('API Test'){
+            agent any
+            steps{
+                script{
                     aptTest().call()
                     stage('post hook'){
                         echo 'custom'
