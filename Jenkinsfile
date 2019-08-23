@@ -1,8 +1,6 @@
 def aptTest(){
     return {
-        stage('aptTest'){
             echo 'aptTest'
-        }
     }
 }
 
@@ -32,9 +30,7 @@ pipeline {
             steps{
                 script{
                     aptTest().call()
-                    stage('post hook'){
-                        echo 'custom'
-                    }
+                    echo 'custom'
                 }
             }
             post {
