@@ -25,7 +25,7 @@ pipeline {
             agent any
             steps{
                 script{
-                    sh "${GIT_COMMIT}"
+                    echo "${GIT_COMMIT}"
                     sh 'pwd'
                     sh 'ls -la'
                     func().call()
@@ -37,7 +37,7 @@ pipeline {
             agent any
             steps{
                 script{
-                    sh "${GIT_COMMIT}"
+                    echo "${GIT_COMMIT}"
                     aptTest().call()
                     echo 'custom'
                 }
