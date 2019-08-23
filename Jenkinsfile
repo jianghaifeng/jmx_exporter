@@ -25,6 +25,7 @@ pipeline {
             agent any
             steps{
                 script{
+                    sh 'ls -la'
                     func().call()
                     echo 'custom'
                 }
