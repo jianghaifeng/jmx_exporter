@@ -2,11 +2,6 @@ def aptTest(){
     return {
         stage('aptTest'){
             echo 'aptTest'
-            post {
-                always {
-                    echo "post of api test"
-                }
-            }
         }
     }
 }
@@ -20,7 +15,7 @@ def func(){
 }
 
 pipeline {
-    agent none
+    agent any
     stages 
     {
         stage('Start') {
