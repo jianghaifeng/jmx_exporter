@@ -40,6 +40,7 @@ pipeline {
             agent any
             steps{
                 script{
+                    echo "${scm}"
                     echo "${env.GIT_COMMIT}"
                     aptTest().call()
                     echo 'custom'
