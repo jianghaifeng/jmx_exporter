@@ -19,10 +19,7 @@ pipeline {
         stage('Deploy'){
             input{
                  id 'userInput'
-                 message 'Enter path of test reports:?'
-                 parameters  [
-                 [$class: 'TextParameterDefinition', defaultValue: 'None', description: 'Path of config file', name: 'Config'],
-                 [$class: 'TextParameterDefinition', defaultValue: 'None', description: 'Test Info file', name: 'Test']]
+                 message 'Enter path of test reports:?'          
             }
             
             agent any
