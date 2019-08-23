@@ -1,6 +1,6 @@
 def aptTest(){
     return {
-            echo 'aptTest'
+        echo 'aptTest'
     }
 }
 
@@ -23,7 +23,7 @@ pipeline {
             }         
             agent any
             steps{
-                node{
+                script{
                     echo "${scm.GIT_COMMIT}"
                     echo "${env.GIT_COMMIT}"
                     sh 'pwd'
@@ -39,7 +39,7 @@ pipeline {
             }
             agent any
             steps{
-                node{
+                script{
                     echo "${scm.GIT_COMMIT}"
                     echo "${env.GIT_COMMIT}"
                     aptTest().call()
