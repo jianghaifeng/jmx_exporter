@@ -1,15 +1,18 @@
 pipeline {
     agent none
     stages {
-        stage('stage1') {
+        stage('Build') {
             agent any
             steps {
-                sh "step1"
-                sh "step2"
+                sh "step 1 in build"
+                sh "step 2 in build"
             }
+        }
+        stage('Deploy') {
+            agent any
             steps {
-                sh "step3"
-                sh "step4"
+                sh "step 1 in deploy"
+                sh "step 2 in deploy"
             }
         }
     }
