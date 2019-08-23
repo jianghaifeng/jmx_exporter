@@ -23,7 +23,7 @@ pipeline {
             }         
             agent any
             steps{
-                script{
+                node{
                     echo "${scm.GIT_COMMIT}"
                     echo "${env.GIT_COMMIT}"
                     sh 'pwd'
@@ -39,7 +39,7 @@ pipeline {
             }
             agent any
             steps{
-                script{
+                node{
                     echo "${scm.GIT_COMMIT}"
                     echo "${env.GIT_COMMIT}"
                     aptTest().call()
