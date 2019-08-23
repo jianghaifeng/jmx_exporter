@@ -20,10 +20,7 @@ pipeline {
             input{
                  id 'userInput'
                  message 'Enter path of test reports:?'          
-            }
-            options{
-                skipDefaultCheckout()
-            }
+            }         
             agent any
             steps{
                 script{
@@ -36,6 +33,9 @@ pipeline {
             }
         }
         stage('API Test'){
+            options{
+                skipDefaultCheckout()
+            }
             agent any
             steps{
                 script{
