@@ -21,7 +21,9 @@ pipeline {
                  id 'userInput'
                  message 'Enter path of test reports:?'          
             }
-            
+            options{
+                skipDefaultCheckout()
+            }
             agent any
             steps{
                 script{
