@@ -36,10 +36,10 @@ pipeline {
                     }
                 }
             }
-        }
-        post {
-            always {
-                echo "post of api test"
+            post {
+                always {
+                    echo "post of api test"
+                }
             }
         }
     }
