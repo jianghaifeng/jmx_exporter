@@ -7,7 +7,7 @@ def aptTest(){
 def func(){
     return {
         stage('clone'){        
-            checkout([$class: 'GitSCM', branches: [[name: 'cae9f2' ]]])
+            checkout([$class: 'GitSCM', commitId: 'cae9f2'])
         }
     }
 }
