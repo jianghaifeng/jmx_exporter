@@ -2,6 +2,11 @@ def aptTest(){
     return {
         stage('aptTest'){
             echo 'aptTest'
+            post {
+                always {
+                    echo "post of api test"
+                }
+            }
         }
     }
 }
