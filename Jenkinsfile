@@ -12,9 +12,19 @@ pipeline {
             agent none
             stages {
                 stage ('deploy sub 1') {
-                    agent any
-                    steps {
-                        echo "step 1 in deploy"
+                    stages {
+                        stage ('deploy sub1 sub1') {
+                            agent any
+                            steps {
+                                echo "step 1 in deploy"
+                            }
+                        }
+                        stage ('deploy sub1 sub2') {
+                            agent any
+                            steps {
+                                echo "step 2 in deploy"
+                            }
+                        }
                     }
                 }
                 stage ('deploy sub 2') {
@@ -23,10 +33,6 @@ pipeline {
                         echo "step 2 in deploy"
                     }
                 }
-            }
-            steps {
-                echo "step 1 in deploy"
-                echo "step 2 in deploy"
             }
         }
     }

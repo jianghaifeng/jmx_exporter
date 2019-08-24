@@ -9,9 +9,9 @@ pipeline {
         stage('Build') {
             // agent if the agent in pipeline is none
             // only one of the followings:
-            //  --- steps - only one
-            //  --- stages - only one
-            //  --- parallel - only one
+            //  --- steps
+            //  --- stages
+            //  --- parallel
             agent any
             steps {
                 echo "step 1 in build"
