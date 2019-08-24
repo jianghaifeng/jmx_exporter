@@ -1,13 +1,12 @@
 node {
     stage('build') {
-        stages {
-            stage('sub stage1 for build') {
-                echo "actions 1"
-            }
-            stage('sub stage2 for build') {
-                echo "actions 2"
-            }
+        stage('sub stage1 for build') {
+            echo "actions 1"
         }
+        stage('sub stage2 for build') {
+            echo "actions 2"
+        }
+        
         echo "actions for build"
     }
     stage('deploy') {
