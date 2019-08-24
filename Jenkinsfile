@@ -24,10 +24,10 @@ pipeline {
                     }
                 }
             }
-            // steps {
-            //     echo "step 1 in deploy"
-            //     echo "step 2 in deploy"
-            // }
+            steps {
+                echo "step 1 in deploy"
+                echo "step 2 in deploy"
+            }
         }
     }
 }
