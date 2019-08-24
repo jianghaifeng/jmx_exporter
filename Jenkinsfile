@@ -2,14 +2,14 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            agent {label 'agent for build'}
+            agent any
             steps {
                 echo "step 1 in build"
                 echo "step 2 in build"
             }
         }
         stage('Deploy') {
-            agent {label 'agent for deploy'}
+            agent any
             stages {
                 stage('sub stage1 in deploy') {
                     steps {
