@@ -6,8 +6,9 @@ node {
         stage('sub stage2 for build') {
             echo "actions 2"
         }
-        
-        echo "actions for build"
+        step {
+            echo "actions for build"
+        }
     }
     stage('deploy') {
         echo "actions for deploy"
