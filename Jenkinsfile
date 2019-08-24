@@ -7,6 +7,11 @@ pipeline {
                 echo "step 1 in build"
                 echo "step 2 in build"
             }
+            post {
+                always {
+                    echo "post always in build"
+                }
+            }
         }
         stage('Deploy') {
             agent none
@@ -33,6 +38,11 @@ pipeline {
                     }
                 }
             }
+        }
+    }
+    post {
+        always {
+            echo "post in pipeline"
         }
     }
 }
