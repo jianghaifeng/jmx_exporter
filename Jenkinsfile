@@ -12,10 +12,14 @@ pipeline {
             agent {label 'agent for deploy'}
             stages {
                 stage('sub stage1 in deploy') {
-                    echo "step 1 in deploy"
+                    steps {
+                        echo "step 1 in deploy"
+                    }
                 }
                 stage('sub stage2 in deploy') {
-                    echo "step 2 in deploy"
+                    steps {
+                        echo "step 2 in deploy"
+                    }
                 }
             }
         }
