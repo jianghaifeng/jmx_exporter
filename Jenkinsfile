@@ -1,9 +1,12 @@
-def needApprove() {
-    return {
-        
-    }
+def deploymentApproval(String environment, List<String> approvers, String inputQuestion) {
+    return input(
+        id: "userInput${environment}",
+        message: "Deploy to ${environment}",
+        parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to ${environment}", name: "${inputQuestion}")],
+        submitterParameter: 'submitter',
+        submitter: approvers.join(',')
+    )
 }
-
 
 pipeline {
     agent none
@@ -17,6 +20,15 @@ pipeline {
             post {
                 always {
                     echo "post always in build"
+                }
+            }
+        }
+        stage('Deploy?') {
+            steps {
+                script {
+                    def shouldDeployToUat = deploymentApproval('UAT', uatApprovers, "shouldWeDeployToUat")
+                    //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
+                    echo "${shouldDeployToUat}"
                 }
             }
         }
