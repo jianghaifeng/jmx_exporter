@@ -1,42 +1,9 @@
 def needApprove() {
     return {
-        when {
-            beforeInput false
-            equals expected: 'yes', actual: "${Proceed}"
-        }
-        input {
-            message "Should we continue?"
-            ok "Yes, we should."
-            submitter "alice, bob"
-            parameters {
-                string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
-            }
-        }
+        
     }
 }
 
-def deployStage() {
-    return {
-        stage ('deploy sub 1') {
-            options{
-                skipDefaultCheckout()
-            }
-            agent any
-            stages {
-                stage ('deploy sub1 sub1') {
-                    steps {
-                        echo "step 1 in deploy"
-                    }
-                }
-                stage ('deploy sub1 sub2') {
-                    steps {
-                        echo "step 2 in deploy"
-                    }
-                }
-            }
-        }
-    }
-}
 
 pipeline {
     agent none
@@ -57,13 +24,35 @@ pipeline {
             agent none
             stages {
                 stage ('deploy sub 1') {
-                    steps {
-                        script {
-                            deployStage().call()
+                    options{
+                        skipDefaultCheckout()
+                    }
+                    agent any
+                    stages {
+                        stage ('deploy sub1 sub1') {
+                            steps {
+                                echo "step 1 in deploy"
+                            }
+                        }
+                        stage ('deploy sub1 sub2') {
+                            steps {
+                                echo "step 2 in deploy"
+                            }
                         }
                     }
                 }
                 stage ('deploy sub 2 - apitest') {
+                    when {
+                        beforeInput false
+                        equals expected: 'yes', actual: "${Proceed}"
+                    }
+                    input {
+                        message "Should we continue?"
+                        submitter "alice, bob"
+                        parameters {
+                            string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
+                        }
+                    }
                     agent any
                     steps {
                         echo "step 2 in deploy"
