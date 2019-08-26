@@ -20,10 +20,13 @@ pipeline {
                 echo "step 2 in build"
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
+                echo "PERSON = ${params.PERSON}"
+
                 script {
                     var = 2
                     env.var = 2
                     env.gitCommit = GIT_COMMIT
+                    params.PERSON = "haifeng"
                 }
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
