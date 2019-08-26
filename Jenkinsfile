@@ -8,6 +8,13 @@ def deploymentApproval(String environment, List<String> approvers, String inputQ
     )
 }
 
+def func() {
+    return {
+        stage ('stage in func') {
+            echo "hi from func"
+        }
+    }
+}
 pipeline {
     agent none
     stages {
@@ -27,8 +34,9 @@ pipeline {
             agent none
             steps {
                 script {
-                    def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
+                    // def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
                     def shouldDeployToUat1 = false
+                    func().call()
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
                 }
