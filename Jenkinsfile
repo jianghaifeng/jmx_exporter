@@ -52,7 +52,7 @@ pipeline {
                     }
                 }
                 stage ('deploy sub 2') {
-                    needApprove().call()
+                    needApprove()
                     agent any
                     steps {
                         echo "step 2 in deploy"
