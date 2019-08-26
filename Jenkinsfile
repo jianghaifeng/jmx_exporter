@@ -13,7 +13,6 @@ pipeline {
                 echo "step 1 in build"
                 echo "step 2 in build"
                 script {
-                    echo "${GIT_COMMIT}"
                     env.gitCommit = GIT_COMMIT
                 }
             }
