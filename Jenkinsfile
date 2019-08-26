@@ -27,11 +27,6 @@ pipeline {
                         submitter: "alice,bob"
                     )
 
-                    if (shouldDeployToUat != 'yes') {
-                        currentBuild.result = 'success'
-                        return
-                    }
-
                     env.deployOK = shouldDeployToUat
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
@@ -62,8 +57,15 @@ pipeline {
                 }
                 stage ('deploy sub 2 - apitest') {
                     when {
-                        beforeInput false
-                        equals expected: 'yes', actual: Proceed
+                        {
+                            beforeInput false
+                            equals expected: 'yes', actual: Proceed
+                        }
+                        {
+                            beforeInput true
+                            equals expected: 'yes', actual: env.deployOK
+                        }
+                        
                     }
                     input {
                         message "Should we continue?"
