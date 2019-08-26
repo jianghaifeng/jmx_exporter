@@ -23,8 +23,9 @@ pipeline {
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
                         submitter: "alice,bob"
                     )
+                    env.deploy = shouldDeployToUat
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
-                    echo "${shouldDeployToUat.dep}"
+                    echo "${shouldDeployToUat}"
                 }
             }
         }
@@ -39,6 +40,7 @@ pipeline {
                     stages {
                         stage ('deploy sub1 sub1') {
                             steps {
+                                echo "env.deploy = ${env.deploy}"
                                 echo "step 1 in deploy"
                             }
                         }
