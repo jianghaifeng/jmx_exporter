@@ -9,7 +9,7 @@ pipeline {
             agent any
             steps {
                 echo "${GIT_COMMIT}"
-                env.gitCommit = GIT_COMMIT
+                
                 echo "env.gitCommit = ${env.gitCommit}"
                 echo "step 1 in build"
                 echo "step 2 in build"
@@ -29,7 +29,8 @@ pipeline {
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
                         submitter: "alice,bob"
                     )
-
+                    echo "${GIT_COMMIT}"
+                    env.gitCommit = GIT_COMMIT
                     env.deployOK = shouldDeployToUat
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
