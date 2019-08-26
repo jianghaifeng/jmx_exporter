@@ -17,13 +17,13 @@ pipeline {
                 echo "step 2 in build"
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
-                var = 2
-                env.var = 2
-                echo "var = ${var}"
-                echo "env.var = ${env.var}"
                 script {
+                    var = 2
+                    env.var = 2
                     env.gitCommit = GIT_COMMIT
                 }
+                echo "var = ${var}"
+                echo "env.var = ${env.var}"
             }
             post {
                 always {
