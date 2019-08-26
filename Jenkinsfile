@@ -1,5 +1,6 @@
 def approv = [
-
+    'alice',
+    'bob'
 ]
 pipeline {
     agent none
@@ -58,12 +59,9 @@ pipeline {
                         beforeInput true
                         equals expected: 1, actual: 2
                     }
-                    when {
-                        equals expected: 'yes', actual: "${Proceed}"
-                    }
                     input {
                         message "Should we continue?"
-                        submitter "alice,bob"
+                        submitter uatApprovers.join(',')
                         parameters {
                             string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
                         }
