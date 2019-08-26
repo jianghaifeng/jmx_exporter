@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
-                    def shouldDeployToUat = false
+                    def shouldDeployToUat1 = false
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
                 }
