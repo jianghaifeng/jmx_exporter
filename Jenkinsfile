@@ -9,6 +9,8 @@ pipeline {
             agent any
             steps {
                 echo "${GIT_COMMIT}"
+                env.gitCommit = GIT_COMMIT
+                echo "env.gitCommit = ${env.gitCommit}"
                 echo "step 1 in build"
                 echo "step 2 in build"
             }
@@ -45,8 +47,8 @@ pipeline {
                     stages {
                         stage ('deploy sub1 sub1') {
                             steps {
-                                checkout([$class: 'GitSCM', branches: [[name: 'b1dc31c7a671fdafad85459319cde35c391807a8']]])
-                                echo "${GIT_COMMIT}"
+                                echo "env.gitCommit = ${env.gitCommit}"
+                                checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}]]])
                                 echo "env.deploy = ${env.deployOk}"
                                 echo "step 1 in deploy"
                             }
