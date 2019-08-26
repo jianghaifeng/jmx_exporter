@@ -9,7 +9,6 @@ pipeline {
             agent any
             steps {
                 echo "${GIT_COMMIT}"
-                
                 echo "env.gitCommit = ${env.gitCommit}"
                 echo "step 1 in build"
                 echo "step 2 in build"
