@@ -38,7 +38,7 @@ pipeline {
                     def shouldDeployToUat1 = false
                     func().call()
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
-                    echo "${shouldDeployToUat}"
+                    echo "${shouldDeployToUat1}"
                 }
             }
         }
