@@ -1,3 +1,22 @@
+def needApprove() {
+    return {
+        when {
+            beforeInput false
+            equals expected: 'yes', actual: "${Proceed}"
+        }
+        input {
+            message "Should we continue?"
+            ok "Yes, we should."
+            submitter "alice, bob"
+            parameters {
+                string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
+            }
+        }
+    }
+}
+
+
+
 pipeline {
     agent none
     stages {
@@ -35,18 +54,7 @@ pipeline {
                     }
                 }
                 stage ('deploy sub 2') {
-                    when {
-                        beforeInput false
-                        equals expected: 'yes', actual: "${Proceed}"
-                    }
-                    input {
-                        message "Should we continue?"
-                        ok "Yes, we should."
-                        submitter "alice, bob"
-                        parameters {
-                            string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
-                        }
-                    }
+                    needApprove()
                     agent any
                     steps {
                         echo "step 2 in deploy"
