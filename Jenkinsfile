@@ -43,12 +43,11 @@ pipeline {
                 }
                 stage ('deploy sub 2 - apitest') {
                     when {
-                        beforeInput false
                         equals expected: 'yes', actual: "${Proceed}"
                     }
                     input {
                         message "Should we continue?"
-                        submitter "alice, bob"
+                        submitter "alice,bob"
                         parameters {
                             string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
                         }
