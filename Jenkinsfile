@@ -2,8 +2,10 @@ def approv = [
     'alice',
     'bob'
 ]
+
+def var = 1
+
 pipeline {
-    def var = 1
     agent none
     stages {
         stage('Build') {
