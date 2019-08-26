@@ -1,20 +1,4 @@
-def deploymentApproval(String environment, List<String> approvers, String inputQuestion) {
-    return input(
-        id: "userInput${environment}",
-        message: "Deploy to ${environment}",
-        parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to ${environment}", name: "${inputQuestion}")],
-        submitterParameter: 'submitter',
-        submitter: approvers.join(',')
-    )
-}
 
-def func() {
-    return {
-        stage ('stage in func') {
-            echo "hi from func"
-        }
-    }
-}
 pipeline {
     agent none
     stages {
@@ -34,9 +18,12 @@ pipeline {
             agent none
             steps {
                 script {
-                    def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat").call()
+                    def shouldDeployToUat = input (
+                        message: "Deploy to uat",
+                        parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
+                        submitter: "alice,bob"
+                    )
                     def shouldDeployToUat1 = false
-                    def isok = func().call()
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat1}"
                 }
