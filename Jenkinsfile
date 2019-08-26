@@ -57,15 +57,9 @@ pipeline {
                 }
                 stage ('deploy sub 2 - apitest') {
                     when {
-                        {
-                            beforeInput false
-                            equals expected: 'yes', actual: Proceed
-                        }
-                        {
-                            beforeInput true
-                            equals expected: 'yes', actual: env.deployOK
-                        }
-                        
+                        beforeInput false
+                        equals expected: 'yes', actual: Proceed
+                        equals expected: 'yes', actual: env.deployOK
                     }
                     input {
                         message "Should we continue?"
