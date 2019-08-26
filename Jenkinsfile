@@ -28,7 +28,8 @@ pipeline {
                     )
 
                     if (shouldDeployToUat != 'yes') {
-                        setBuildStatus("Build complete", "SUCCESS");
+                        currentBuild.result = 'success'
+                        return
                     }
 
                     env.deployOK = shouldDeployToUat
