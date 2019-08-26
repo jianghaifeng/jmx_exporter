@@ -13,7 +13,7 @@ pipeline {
             steps {
                 checkout scm: [
                         $class: 'GitSCM',
-                        branches: [[name:'b1dc31c']]
+                        branches: [[name:'b1dc31']]
                 ]
                 echo "${GIT_COMMIT}"
                 echo "step 1 in build"
