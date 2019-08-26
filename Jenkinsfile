@@ -15,6 +15,29 @@ def needApprove() {
     }
 }
 
+def deployStage() {
+    return {
+        stage ('deploy sub 1') {
+            options{
+                skipDefaultCheckout()
+            }
+            agent any
+            stages {
+                stage ('deploy sub1 sub1') {
+                    steps {
+                        echo "step 1 in deploy"
+                    }
+                }
+                stage ('deploy sub1 sub2') {
+                    steps {
+                        echo "step 2 in deploy"
+                    }
+                }
+            }
+        }
+    }
+}
+
 pipeline {
     agent none
     stages {
@@ -34,25 +57,13 @@ pipeline {
             agent none
             stages {
                 stage ('deploy sub 1') {
-                    options{
-                        skipDefaultCheckout()
-                    }
-                    agent any
-                    stages {
-                        stage ('deploy sub1 sub1') {
-                            steps {
-                                echo "step 1 in deploy"
-                            }
-                        }
-                        stage ('deploy sub1 sub2') {
-                            steps {
-                                echo "step 2 in deploy"
-                            }
+                    steps {
+                        script {
+                            deployStage()
                         }
                     }
                 }
-                stage ('deploy sub 2') {
-                    needApprove()
+                stage ('deploy sub 2 - apitest') {
                     agent any
                     steps {
                         echo "step 2 in deploy"
