@@ -6,8 +6,16 @@ pipeline {
     agent none
     stages {
         stage('Build') {
+            options{
+                skipDefaultCheckout()
+            }
             agent any
             steps {
+                checkout scm: [
+                        $class: 'GitSCM',
+                        commitId: 'cae9f2'
+                ]
+                echo "${GIT_COMMIT}"
                 echo "step 1 in build"
                 echo "step 2 in build"
             }
@@ -42,9 +50,11 @@ pipeline {
                     }
                     agent any
                     stages {
+                        
                         stage ('deploy sub1 sub1') {
                             steps {
-                                echo "env.deploy = ${env.deploy}"
+                                echo "${GIT_COMMIT}"
+                                echo "env.deploy = ${env.deployOk}"
                                 echo "step 1 in deploy"
                             }
                         }
