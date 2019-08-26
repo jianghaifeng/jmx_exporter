@@ -23,9 +23,8 @@ pipeline {
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
                         submitter: "alice,bob"
                     )
-                    def shouldDeployToUat1 = false
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
-                    echo "${shouldDeployToUat1}"
+                    echo "${shouldDeployToUat}"
                 }
             }
         }
