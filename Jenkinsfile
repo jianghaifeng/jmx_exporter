@@ -11,10 +11,8 @@ pipeline {
             }
             agent any
             steps {
-                checkout scm: [
-                        $class: 'GitSCM',
-                        branches: [[name:'b1dc31']]
-                ]
+                checkout([$class: 'GitSCM', branches: [[name: b1dc31]]])
+                
                 echo "${GIT_COMMIT}"
                 echo "step 1 in build"
                 echo "step 2 in build"
