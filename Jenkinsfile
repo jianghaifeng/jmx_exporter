@@ -61,7 +61,7 @@ pipeline {
                     }
                     input {
                         message "Should we continue?"
-                        submitter uatApprovers.join(',')
+                        submitter approv.join(',')
                         parameters {
                             string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
                         }
