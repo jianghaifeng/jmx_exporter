@@ -1,17 +1,17 @@
 pipeline {
     // agent
     // stages - only one
-    // 
+    // post
     agent none
     stages {
         // stage - one or more
-        // 
         stage('Build') {
             // agent if the agent in pipeline is none
             // only one of the followings:
             //  --- steps
             //  --- stages
             //  --- parallel
+            // post
             agent any
             steps {
                 // any action must be in steps

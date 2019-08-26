@@ -17,6 +17,9 @@ pipeline {
             agent none
             stages {
                 stage ('deploy sub 1') {
+                    options{
+                        skipDefaultCheckout()
+                    }
                     agent any
                     stages {
                         stage ('deploy sub1 sub1') {
@@ -32,6 +35,18 @@ pipeline {
                     }
                 }
                 stage ('deploy sub 2') {
+                    when {
+                        beforeInput false
+                        equals expected: 'yes', actual: "${Proceed}"}
+                    }
+                    input {
+                        message "Should we continue?"
+                        ok "Yes, we should."
+                        submitter "alice, bob"
+                        parameters {
+                            string(name: "Proceed", defaultValue: '', description: "Enter 'yes' to deploy to start")
+                        }
+                    }
                     agent any
                     steps {
                         echo "step 2 in deploy"
