@@ -64,6 +64,11 @@ pipeline {
                     }
                     agent any
                     steps {
+                        script {
+                            def hf = Proceed
+                            echo "${hf}"
+                        }
+
                         echo "step 2 in deploy"
                     }
                 }
