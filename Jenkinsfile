@@ -15,8 +15,6 @@ def needApprove() {
     }
 }
 
-
-
 pipeline {
     agent none
     stages {
