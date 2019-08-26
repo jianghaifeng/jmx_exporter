@@ -24,7 +24,7 @@ pipeline {
                         submitter: "alice,bob"
                     )
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
-                    echo "${shouldDeployToUat}"
+                    echo "${shouldDeployToUat.dep}"
                 }
             }
         }
