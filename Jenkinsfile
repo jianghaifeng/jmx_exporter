@@ -48,7 +48,7 @@ pipeline {
                         stage ('deploy sub1 sub1') {
                             steps {
                                 echo "env.gitCommit = ${env.gitCommit}"
-                                checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}]]])
+                                checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}"]]])
                                 echo "env.deploy = ${env.deployOk}"
                                 echo "step 1 in deploy"
                             }
