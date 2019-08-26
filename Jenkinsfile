@@ -1,4 +1,6 @@
+def approv = [
 
+]
 pipeline {
     agent none
     stages {
@@ -52,6 +54,10 @@ pipeline {
                     }
                 }
                 stage ('deploy sub 2 - apitest') {
+                    when {
+                        beforeInput true
+                        equals expected: 1, actual: 2
+                    }
                     when {
                         equals expected: 'yes', actual: "${Proceed}"
                     }
