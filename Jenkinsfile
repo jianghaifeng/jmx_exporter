@@ -34,7 +34,7 @@ pipeline {
             agent none
             steps {
                 script {
-                    // def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
+                    def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat").call()
                     def shouldDeployToUat1 = false
                     def isok = func().call()
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
