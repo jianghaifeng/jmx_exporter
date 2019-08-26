@@ -11,10 +11,10 @@ pipeline {
             }
             agent any
             steps {
-                checkout scm: [
-                        $class: 'GitSCM',
-                        commitId: 'cae9f2'
-                ]
+                // checkout scm: [
+                //         $class: 'GitSCM',
+                //         commitId: 'cae9f2'
+                // ]
                 echo "${GIT_COMMIT}"
                 echo "step 1 in build"
                 echo "step 2 in build"
