@@ -59,7 +59,7 @@ pipeline {
                 stage ('deploy sub 1') {
                     steps {
                         script {
-                            deployStage()
+                            deployStage().call()
                         }
                     }
                 }
