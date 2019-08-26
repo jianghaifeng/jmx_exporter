@@ -26,7 +26,7 @@ pipeline {
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
                         submitter: "alice,bob"
                     )
-                    env.deploy = shouldDeployToUat
+                    env.deployOK = shouldDeployToUat
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
                 }
@@ -57,7 +57,7 @@ pipeline {
                 stage ('deploy sub 2 - apitest') {
                     when {
                         beforeInput true
-                        equals expected: 'yes', actual: env.deploy
+                        equals expected: 'yes', actual: env.deployOK
                     }
                     input {
                         message "Should we continue?"
