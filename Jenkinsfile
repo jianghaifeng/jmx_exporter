@@ -7,6 +7,9 @@ def var = 1
 
 pipeline {
     agent none
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    }
     stages {
         stage('Build') {
             agent any
@@ -24,6 +27,7 @@ pipeline {
                 }
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
+                echo "PERSON = ${params.PERSON}"
             }
             post {
                 always {
@@ -63,6 +67,7 @@ pipeline {
                                 checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}"]]])
                                 echo "env.deploy = ${env.deployOk}"
                                 echo "step 1 in deploy"
+                                echo "PERSON = ${params.PERSON}"
                             }
                         }
                         stage ('deploy sub1 sub2') {
