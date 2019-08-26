@@ -33,7 +33,6 @@ pipeline {
                     )
                     
                     env.deployOK = shouldDeployToUat
-                    //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
                 }
             }
