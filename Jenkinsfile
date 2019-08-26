@@ -6,13 +6,8 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            options{
-                skipDefaultCheckout()
-            }
             agent any
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'b1dc31c7a671fdafad85459319cde35c391807a8']]])
-                
                 echo "${GIT_COMMIT}"
                 echo "step 1 in build"
                 echo "step 2 in build"
@@ -48,9 +43,9 @@ pipeline {
                     }
                     agent any
                     stages {
-                        
                         stage ('deploy sub1 sub1') {
                             steps {
+                                checkout([$class: 'GitSCM', branches: [[name: 'b1dc31c7a671fdafad85459319cde35c391807a8']]])
                                 echo "${GIT_COMMIT}"
                                 echo "env.deploy = ${env.deployOk}"
                                 echo "step 1 in deploy"
