@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy?') {
             steps {
                 script {
-                    def shouldDeployToUat = deploymentApproval('UAT', uatApprovers, "shouldWeDeployToUat")
+                    def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat}"
                 }
