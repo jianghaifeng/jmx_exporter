@@ -36,7 +36,7 @@ pipeline {
                 script {
                     // def shouldDeployToUat = deploymentApproval('UAT', "alice,bob", "shouldWeDeployToUat")
                     def shouldDeployToUat1 = false
-                    func().call()
+                    def isok = func().call()
                     //env.shouldDeployToUat = shouldDeployToUat.shouldWeDeployToUat
                     echo "${shouldDeployToUat1}"
                 }
