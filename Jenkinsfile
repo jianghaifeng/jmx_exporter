@@ -37,7 +37,7 @@ pipeline {
                 stage ('deploy sub 2') {
                     when {
                         beforeInput false
-                        equals expected: 'yes', actual: "${Proceed}"}
+                        equals expected: 'yes', actual: "${Proceed}"
                     }
                     input {
                         message "Should we continue?"
