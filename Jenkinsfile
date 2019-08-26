@@ -3,6 +3,7 @@ def approv = [
     'bob'
 ]
 pipeline {
+    def var = 1
     agent none
     stages {
         stage('Build') {
@@ -12,6 +13,12 @@ pipeline {
                 echo "env.gitCommit = ${env.gitCommit}"
                 echo "step 1 in build"
                 echo "step 2 in build"
+                echo "var = ${var}"
+                echo "env.var = ${env.var}"
+                var = 2
+                env.var = 2
+                echo "var = ${var}"
+                echo "env.var = ${env.var}"
                 script {
                     env.gitCommit = GIT_COMMIT
                 }
@@ -48,6 +55,8 @@ pipeline {
                     stages {
                         stage ('deploy sub1 sub1') {
                             steps {
+                                echo "var = ${var}"
+                                echo "env.var = ${env.var}"
                                 echo "env.gitCommit = ${env.gitCommit}"
                                 checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}"]]])
                                 echo "env.deploy = ${env.deployOk}"
