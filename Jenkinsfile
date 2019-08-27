@@ -79,7 +79,7 @@ pipeline {
                 script {
                     stage('Clone') {
                         echo "checkout: ${env.gitCommit}"
-                        checkout([$class: 'GitSCM', branches: [[name: '37bf917']]])
+                        checkout([$class: 'GitSCM', branches: [[name: '1bb6b46']]])
                     }
                 }
             }
