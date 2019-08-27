@@ -26,7 +26,6 @@ pipeline {
                     var = 2
                     env.var = 2
                     env.gitCommit = GIT_COMMIT
-                    params.PERSON = "haifeng"
                     sh 'cat data'
                 }
                 echo "var = ${var}"
