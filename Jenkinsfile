@@ -37,7 +37,7 @@ pipeline {
 
                 script {
                     var = 2
-                    env.var = 2
+                    env.var = 5
                     env.gitCommit = GIT_COMMIT
                     sh 'cat data'
                 }
