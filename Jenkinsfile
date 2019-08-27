@@ -35,11 +35,18 @@ pipeline {
                 echo "env.var = ${env.var}"
                 echo "PERSON = ${params.PERSON}"
 
+
+
                 script {
                     var = 2
                     env.var = 5
                     env.gitCommit = GIT_COMMIT
                     sh 'cat data'
+
+                    sh 'env > env.txt' 
+                    for (String i : readFile('env.txt').split("\r?\n")) {
+                        println i
+                    }
                 }
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
@@ -77,6 +84,10 @@ pipeline {
                 echo "checkout: ${env.gitCommit}"
                 checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}"]]])
                 script {
+                    sh 'env > env.txt' 
+                    for (String i : readFile('env.txt').split("\r?\n")) {
+                        println i
+                    }
                     stage('Clone') {
                         echo "checkout: ${env.gitCommit}"
                         checkout([$class: 'GitSCM', branches: [[name: '1bb6b46']]])
@@ -95,6 +106,7 @@ pipeline {
                     stages {
                         stage ('deploy sub1 sub1') {
                             steps {
+                                
                                 print "${scm}"
                                 echo "var = ${var}"
                                 echo "env.var = ${env.var}"
