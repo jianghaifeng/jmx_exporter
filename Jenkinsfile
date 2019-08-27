@@ -17,15 +17,6 @@ def func() {
     }
 }
 
-def stage1(){
-    stage('Build1') {
-        agent none
-        steps {
-                echo "11111"
-        }
-    }
-}
-
 pipeline {
     agent none
     parameters {
@@ -64,12 +55,6 @@ pipeline {
             agent none
             steps {
                 script {
-                    stage("123") {
-                        echo "123"
-                    }
-                    stage("456") {
-                        echo "456"
-                    }
                     def shouldDeployToUat = input (
                         message: "Deploy to uat",
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
@@ -78,6 +63,24 @@ pipeline {
                     
                     env.deployOK = shouldDeployToUat
                     echo "${shouldDeployToUat}"
+                }
+            }
+        }
+        stage('Test') {
+            options{
+                skipDefaultCheckout()
+            }
+
+            agent { label 'gradle' }
+
+            steps {
+                echo "checkout: ${env.gitCommit}"
+                checkout([$class: 'GitSCM', branches: [[name: "${env.gitCommit}"]]])
+                script {
+                    stage('Clone') {
+                        echo "checkout: ${env.gitCommit}"
+                        checkout([$class: 'GitSCM', branches: [[name: '37bf917']]])
+                    }
                 }
             }
         }
