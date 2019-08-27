@@ -112,6 +112,7 @@ pipeline {
                             def hf = Proceed
                             echo "${hf}"
                             func().call()
+                            func().call()
                         }
 
                         echo "step 2 in deploy"
