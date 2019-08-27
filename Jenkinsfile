@@ -17,12 +17,22 @@ def func() {
     }
 }
 
+def stage1(){
+    stage('Build1') {
+        agent none
+        steps {
+                echo "11111"
+        }
+    }
+}
+
 pipeline {
     agent none
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     }
     stages {
+        stage1()
         stage('Build') {
             agent any
             steps {
