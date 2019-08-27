@@ -77,6 +77,7 @@ pipeline {
                     stages {
                         stage ('deploy sub1 sub1') {
                             steps {
+                                print "${scm}"
                                 echo "var = ${var}"
                                 echo "env.var = ${env.var}"
                                 echo "env.gitCommit = ${env.gitCommit}"
