@@ -5,6 +5,18 @@ def approv = [
 
 def var = 1
 
+
+def func() {
+    return {
+        stage('test stage 1') {
+            echo 'test stage 1'
+        }
+        stage('test stage 2') {
+            echo 'test stage 2'
+        }
+    }
+}
+
 pipeline {
     agent none
     parameters {
@@ -99,6 +111,7 @@ pipeline {
                         script {
                             def hf = Proceed
                             echo "${hf}"
+                            func().call()
                         }
 
                         echo "step 2 in deploy"
