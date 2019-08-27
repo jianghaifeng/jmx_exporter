@@ -32,7 +32,6 @@ pipeline {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     }
     stages {
-        stage1()
         stage('Build') {
             agent any
             steps {
@@ -65,6 +64,12 @@ pipeline {
             agent none
             steps {
                 script {
+                    stage("123") {
+                        echo "123"
+                    }
+                    stage("456") {
+                        echo "456"
+                    }
                     def shouldDeployToUat = input (
                         message: "Deploy to uat",
                         parameters: [string(defaultValue: '', description: "Enter 'yes' to deploy to uat", name: "dep")],
