@@ -71,7 +71,7 @@ pipeline {
                 skipDefaultCheckout()
             }
 
-            agent { label 'gradle' }
+            agent any
 
             steps {
                 echo "checkout: ${env.gitCommit}"
