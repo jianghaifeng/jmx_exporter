@@ -24,7 +24,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent any
+            agent none
             steps {
                 echo "GIT_COMMIT = ${GIT_COMMIT}"
                 echo "env.GIT_COMMIT = ${env.GIT_COMMIT}"
@@ -34,8 +34,6 @@ pipeline {
                 echo "var = ${var}"
                 echo "env.var = ${env.var}"
                 echo "PERSON = ${params.PERSON}"
-
-
 
                 script {
                     var = 2
