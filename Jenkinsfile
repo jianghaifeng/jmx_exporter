@@ -24,7 +24,7 @@ pipeline {
     }
     stages {
         stage('Build') {
-            agent none
+            agent any
             steps {
                 echo "GIT_COMMIT = ${GIT_COMMIT}"
                 echo "env.GIT_COMMIT = ${env.GIT_COMMIT}"
