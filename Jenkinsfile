@@ -4,7 +4,7 @@ pipeline {
     agent none
     stages {
         stage ('stage1') {
-            agent { label 'gradle'}
+            agent any
             steps {
                 script {
                     echo "var = ${var}"
@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage ('stage2') {
-            agent { label 'gradle'}
+            agent any
             steps {
                 script {
                     echo "hello"
