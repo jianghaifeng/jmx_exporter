@@ -7,6 +7,7 @@ pipeline {
             agent any
             steps {
                 script {
+                    echo "${GIT_COMMIT}"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
                     var = 2
@@ -20,6 +21,7 @@ pipeline {
             agent any
             steps {
                 script {
+                    echo "${GIT_COMMIT}"
                     echo "hello"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
