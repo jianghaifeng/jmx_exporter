@@ -9,7 +9,7 @@ pipeline {
                 script {
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
-                    var = 3
+                    var = 5
                     env.var = var
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
@@ -20,7 +20,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    echo "hello"
+                    //echo "hello"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
                 }
