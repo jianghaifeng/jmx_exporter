@@ -16,7 +16,7 @@ pipeline {
                     stash name: "gitCommit", includes: "gitCommit.txt"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
-                    var = 4
+                    var = 5
                     env.var = var
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
