@@ -10,7 +10,7 @@ pipeline {
                     echo "${GIT_COMMIT}"
                     sh "echo ${GIT_COMMIT} > gitCommit.txt"
                     sh "cat gitCommit.txt"
-                    stash name: gitCommit, includes: "gitCommit.txt"
+                    stash name: "gitCommit", includes: "gitCommit.txt"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
                     var = 2
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     echo "${GIT_COMMIT}"
-                    unstash name: gitCommit
+                    unstash name: "gitCommit"
                     sh "cat gitCommit.txt"
                     echo "hello"
                     echo "var = ${var}"
