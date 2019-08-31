@@ -27,7 +27,7 @@ pipeline {
                     echo "${GIT_COMMIT}"
                     unstash name: "gitCommit"
                     sh "cat gitCommit.txt"
-                    echo "hello"
+                    //echo "hello"
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
                 }
