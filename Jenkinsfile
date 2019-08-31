@@ -1,6 +1,9 @@
 def var = 1
 
 pipeline {
+    options {
+        preserveStashes(buildCount: 50) 
+    }
     agent none
     stages {
         stage ('stage1') {
