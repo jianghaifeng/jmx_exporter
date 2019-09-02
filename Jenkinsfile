@@ -20,7 +20,7 @@ pipeline {
                     env.var = var
                     echo "var = ${var}"
                     echo "env.var = ${env.var}"
-                    checkpoint('stage1')
+                    milestone()
                 }
             }
         }
