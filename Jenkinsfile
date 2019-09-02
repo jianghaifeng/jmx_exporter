@@ -25,7 +25,6 @@ pipeline {
             }
         }
 
-        milestone 1
         stage ('stage2') {
             agent any
             steps {
