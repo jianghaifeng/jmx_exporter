@@ -14,7 +14,6 @@ pipeline {
             // post
             agent any
 
-            parallel 
             steps {
                 script {
                     stage ("checkout code") {
