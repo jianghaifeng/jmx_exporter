@@ -13,6 +13,8 @@ pipeline {
             //  --- parallel
             // post
             agent any
+
+            parallel 
             steps {
                 script {
                     stage ("checkout code") {
@@ -26,16 +28,27 @@ pipeline {
 
                     stage ("sonar") {
                         parallel {
-                            stage ("parallel_fortify") {
+                            stage('Test On Windows') {
                                 agent any
+                                
                                 steps {
-                                    echo "parallel_fortify..."
+                                    echo "testing on win..."
+                                }
+                                post {
+                                    always {
+                                        echo "post..."
+                                    }
                                 }
                             }
-                            stage ("parallel_sonar") {
+                            stage('Test On Linux') {
                                 agent any
                                 steps {
-                                    echo "parallel_sonar..."
+                                    echo "testing on linux..."
+                                }
+                                post {
+                                    always {
+                                        echo "post..."
+                                    }
                                 }
                             }
                         }
