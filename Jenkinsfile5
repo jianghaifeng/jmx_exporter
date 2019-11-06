@@ -1,0 +1,61 @@
+pipeline {
+    // agent
+    // stages - only one
+    // post
+    agent none
+    stages {
+        // stage - one or more
+        stage('Build') {
+            // agent if the agent in pipeline is none
+            // only one of the followings:
+            //  --- steps
+            //  --- stages
+            //  --- parallel
+            // post
+            agent any
+            steps {
+                script {
+                    stage ("checkout code") {
+                        echo "checking out code..."
+                    }
+
+                    stage ("build") {
+                        echo "building..."
+                        sh "pwd"
+                    }
+
+                    stage ("sonar") {
+                        parallel {
+                            stage ("parallel_fortify") {
+                                echo "parallel_fortify..."
+                            }
+                            stage ("parallel_sonar") {
+                                echo "parallel_sonar..."
+                            }
+                        }
+                        echo "sonar is running..."
+                    }
+
+                    stage ("fortify") {
+                        echo "fortify is running..."
+                    }
+
+                    stage ("deploy") {
+                        echo "deploying to dev..."
+                    }
+
+                    stage ("apitest") {
+                        echo "api testing..."
+                    }
+                }
+            }
+        }
+    }
+    post {
+        failure {
+            script {
+                echo "sending email..."
+            }
+        }
+    }
+}
