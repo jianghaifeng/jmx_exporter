@@ -6,6 +6,41 @@ pipeline {
     stages {
         // stage - one or more
         stage('Build') {
+            parallel {
+                stage ("fortify") {
+                    agent any
+                    steps {
+                        script {
+                            stage ("checkout code") {
+                                echo "checking out code..."
+                            }
+                            stage ("fortify") {
+                                echo "fortify..."
+                            }
+                        }
+                    }
+                }
+                stage ("sonar") {
+                    agent any
+                    steps {
+                        script {
+                            stage ("checkout code") {
+                                echo "checking out code..."
+                            }
+                            stage ("sonar") {
+                                echo "sonar..."
+                            }
+                            stage ("build") {
+                                echo "building..."
+                                sh "pwd"
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        stage ("deploy") {
             // agent if the agent in pipeline is none
             // only one of the followings:
             //  --- steps
@@ -16,47 +51,6 @@ pipeline {
 
             steps {
                 script {
-                    stage ("checkout code") {
-                        echo "checking out code..."
-                    }
-
-                    stage ("build") {
-                        echo "building..."
-                        sh "pwd"
-                    }
-
-                    stage ("sonar") {
-                        parallel {
-                            stage('Test On Windows') {
-                                agent any
-                                
-                                steps {
-                                    echo "testing on win..."
-                                }
-                                post {
-                                    always {
-                                        echo "post..."
-                                    }
-                                }
-                            }
-                            stage('Test On Linux') {
-                                agent any
-                                steps {
-                                    echo "testing on linux..."
-                                }
-                                post {
-                                    always {
-                                        echo "post..."
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    stage ("fortify") {
-                        echo "fortify is running..."
-                    }
-
                     stage ("deploy") {
                         echo "deploying to dev..."
                     }
