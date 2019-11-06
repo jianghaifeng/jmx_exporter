@@ -25,11 +25,19 @@ pipeline {
                     }
 
                     stage ("sonar") {
-                        stage ("parallel_fortify") {
-                            echo "parallel_fortify..."
-                        }
-                        stage ("parallel_sonar") {
-                            echo "parallel_sonar..."
+                        parallel {
+                            stage ("parallel_fortify") {
+                                agent any
+                                steps {
+                                    echo "parallel_fortify..."
+                                }
+                            }
+                            stage ("parallel_sonar") {
+                                agent any
+                                steps {
+                                    echo "parallel_sonar..."
+                                }
+                            }
                         }
                     }
 
